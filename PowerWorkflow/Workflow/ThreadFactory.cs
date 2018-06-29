@@ -24,7 +24,15 @@ namespace PowerWorkflow
 
         public void InitialThreadInstance(ThreadInstance instance) { }
 
-        public void DriveThreadInstance(NodeInstance node, ThreadRole role, ThreadAction action) { }
+        public void DriveThreadInstance(NodeInstance node,
+            ThreadRole role,
+            ThreadAction action,
+            FormInstance form,
+            FormEntity entity) {
+
+             
+
+        }
 
         public IList<NodeInstance> GetNodeInstances(ThreadInstance instance)
         {

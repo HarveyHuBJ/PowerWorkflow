@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workflow\FormEntity.cs" />
     <Compile Include="Workflow\FormInstance.cs" />
     <Compile Include="Workflow\NodeInstance.cs" />
     <Compile Include="Workflow\PageInstance.cs" />

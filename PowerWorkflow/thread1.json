@@ -1,0 +1,116 @@
+{
+  "threadId": "e229d984-1631-4d2a-9c18-3c6ef576db0e",
+  "threadName": "",
+  "author": "",
+  "version": "v1.0",
+  "nodes": [
+    {
+      "index": 1,
+      "nodeId": "879e379f-afb8-4301-9e68-ead88714fc93",
+      "nodeTitle": "First Node",
+      "variables": [ "var1", "var2" ],
+      "majorItems": {
+        "formRef": "d8196b8e-2b4a-4554-b9fc-5949a0c533a9",
+        "formRoleRef": "2a0e328b-a676-4a32-af65-a2e857f8c17a",
+        "pageRef": "f7c34cf7-c468-49ae-bb02-547e3cec4e48",
+        "pageRoleRef": "4ef1ceb4-9040-45b1-a4f9-c69febff821b"
+      },
+      "OptionalItems": {
+        "forms": [],
+        "pages": []
+      }
+    },
+    {
+      "index": 2,
+      "nodeId": "a60077a9-7dd4-4596-916e-cf05c400fd21",
+      "nodeTitle": "Second Node",
+      "default": {
+        "formRef": "d8196b8e-2b4a-4554-b9fc-5949a0c533a9",
+        "formRoleRef": "2a0e328b-a676-4a32-af65-a2e857f8c17a",
+        "pageRef": "f7c34cf7-c468-49ae-bb02-547e3cec4e48",
+        "pageRoleRef": "4ef1ceb4-9040-45b1-a4f9-c69febff821b"
+      },
+      "Optionals": {
+        "forms": [],
+        "pages": []
+      }
+    }
+  ],
+  "roles": [
+    {
+      "roleId": "2a0e328b-a676-4a32-af65-a2e857f8c17a",
+      "roleName": "RDE"
+    },
+    {
+      "roleId": "4ef1ceb4-9040-45b1-a4f9-c69febff821b",
+      "roleName": "BA"
+    }
+  ],
+  "forms": [
+    {
+      "formId": "d8196b8e-2b4a-4554-b9fc-5949a0c533a9",
+      "formName": "Form of Default",
+      "formPath": "/form/01formOfDefault.cshtml",
+      "formModel": "Model.FormOfDefaultModel",
+      "actions": [
+        {
+          "action": "Submit",
+          "assignTo": "$defaultRole" // means major role or admin
+        },
+        {
+          "action": "Terminate",
+          "assignTo": "$defaultRole"
+        }
+      ]
+    },
+    {
+      "formId": "d8196b8e-2b4a-4554-b9fc-5949a0c533a9",
+      "formName": "Form of Default",
+      "formPath": "/form/01formOfDefault.cshtml",
+      "formModel": "Model.FormOfDefaultModel",
+      "actions": [ "Submit", "Terminate" ]
+    }
+  ],
+  "pages": [
+    {
+      "pageId": "f7c34cf7-c468-49ae-bb02-547e3cec4e48",
+      "pageName": "Form of Default",
+      "pagePath": "/form/01pageOfDefault.cshtml",
+      "pageModel": "Model.FormOfDefaultModel"
+    }
+  ],
+  "stateMachine": [
+    {
+      "init": true,
+      "nodeRef": "879e379f-afb8-4301-9e68-ead88714fc93",
+      "transmit": [
+        {
+          "onAction": "Submit",
+          "conditions": [
+            {
+              "condition": "$var1>0",
+              "goToEnd": true
+            },
+            {
+              "condition": "other",
+              "nextNodeRef": "a60077a9-7dd4-4596-916e-cf05c400fd21"
+            }
+          ]
+        },
+        {
+          "onAction": "Terminate",
+          "goToEnd": true
+        }
+      ]
+    },
+    {
+      "nodeRef": "a60077a9-7dd4-4596-916e-cf05c400fd21",
+      "transmit": [
+        {
+          "onAction": "Submit",
+          "goToEnd": true
+        }
+      ]
+    }
+  ]
+}

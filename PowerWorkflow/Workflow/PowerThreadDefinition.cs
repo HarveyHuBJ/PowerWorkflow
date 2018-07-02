@@ -1,6 +1,6 @@
 ﻿namespace PowerWorkflow
 {
-    public class NodeInstance
+    public class PowerThreadDefinition
     {
     }
 }

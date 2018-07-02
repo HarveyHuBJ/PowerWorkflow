@@ -40,21 +40,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\PowerThreadStateEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workflow\FormEntity.cs" />
-    <Compile Include="Workflow\FormInstance.cs" />
-    <Compile Include="Workflow\NodeInstance.cs" />
-    <Compile Include="Workflow\PageInstance.cs" />
-    <Compile Include="Workflow\Thread.cs" />
-    <Compile Include="Workflow\ThreadAction.cs" />
-    <Compile Include="Workflow\ThreadDefinition.cs" />
-    <Compile Include="Workflow\ThreadEngine.cs" />
-    <Compile Include="Workflow\ThreadFactory.cs" />
-    <Compile Include="Workflow\ThreadInstance.cs" />
-    <Compile Include="Workflow\ThreadRole.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeEvents.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeGetVariableEventEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeGoNextEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeSaveFormEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeSetVariableEventEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeTerminateEventArgs.cs" />
+    <Compile Include="Exceptions\InvalidThreadActionException.cs" />
+    <Compile Include="Workflow\IPowerThreadEntityBindable.cs" />
+    <Compile Include="Workflow\PowerThread.cs" />
+    <Compile Include="Workflow\PowerThreadAction.cs" />
+    <Compile Include="Workflow\PowerThreadBaseObject.cs" />
+    <Compile Include="Workflow\PowerThreadContext.cs" />
+    <Compile Include="Workflow\PowerThreadDefinition.cs" />
+    <Compile Include="Workflow\PowerThreadEngine.cs" />
+    <Compile Include="Workflow\PowerThreadEntity.cs" />
+    <Compile Include="Workflow\PowerThreadFactory.cs" />
+    <Compile Include="Workflow\PowerThreadForm.cs" />
+    <Compile Include="Workflow\PowerThreadNode.cs" />
+    <Compile Include="Workflow\PowerThreadRole.cs" />
+    <Compile Include="Workflow\PowerThreadRoleBox.cs" />
+    <Compile Include="Workflow\PowerThreadStateMachine.cs" />
+    <Compile Include="Workflow\PowerThreadView.cs" />
+    <Compile Include="Description\Thread.cs" />
+    <Compile Include="Workflow\PowerVariable.cs" />
+    <Compile Include="Workflow\StandNodeActions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="thread1.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Lab\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

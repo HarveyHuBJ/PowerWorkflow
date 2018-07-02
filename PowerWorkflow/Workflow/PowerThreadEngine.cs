@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PowerWorkflow
 {
-    public class ThreadEngine
+    public class PowerThreadEngine
     {
 
         

@@ -8,6 +8,9 @@
         End = 9,
         Terminated = 11,
         Paused = 21,
+        // Errors
+        ErrorMissFoundNode = 61,
+
         Unknown = 99
     }
 }

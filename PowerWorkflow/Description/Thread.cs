@@ -173,7 +173,7 @@ namespace PowerWorkflow.Description
         public List<TransmitItem> transmit { get; set; }
     }
 
-    public class Root
+    public class PowerThreadDescription
     {
         /// <summary>
         /// 

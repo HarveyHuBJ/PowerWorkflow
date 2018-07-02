@@ -1,6 +1,6 @@
 ﻿namespace PowerWorkflow
 {
-    public class PowerThreadDefinition
+    public class PowerThreadDescription
     {
     }
 }

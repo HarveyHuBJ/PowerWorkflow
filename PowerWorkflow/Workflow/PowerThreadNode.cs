@@ -1,4 +1,5 @@
 ﻿using PowerWorkflow.Workflow.Events;
+using System;
 using System.Collections.Generic;
 
 namespace PowerWorkflow.Workflow
@@ -11,7 +12,7 @@ namespace PowerWorkflow.Workflow
         //public event PowerThreadNodeSaveFormEvent SaveForm;
         //public event PowerThreadNodeTerminateEvent Terminate;
 
-        public PowerThreadNode(string name, PowerThreadContext context) : base(name)
+        public PowerThreadNode(Guid objectId, string name, PowerThreadContext context) : base(objectId, name)
         {
             this.context = context;
         }
@@ -117,5 +118,6 @@ namespace PowerWorkflow.Workflow
         ///  是否流程终止节点
         /// </summary>
         public bool IsEnd { get; internal set; }
+        public bool IsStart { get; internal set; }
     }
 }

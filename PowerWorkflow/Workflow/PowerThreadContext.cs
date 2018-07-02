@@ -12,7 +12,7 @@ namespace PowerWorkflow.Workflow
 
         internal bool IsCurrentNode(PowerThreadNode fromNode)
         {
-            throw new NotImplementedException();
+            return fromNode.ObjectId == PowerThread.CurrentNode.ObjectId;
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿namespace PowerWorkflow.Workflow
+﻿using System;
+
+namespace PowerWorkflow.Workflow
 {
     public class PowerThreadForm : PowerThreadBaseObject, IPowerThreadEntityBindable
 
     {
-        public PowerThreadForm(string name):base(name)
+        public PowerThreadForm(Guid objectId, string name) : base(objectId, name)
         {
 
         }

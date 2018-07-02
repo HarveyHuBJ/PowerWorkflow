@@ -1,9 +1,11 @@
-﻿namespace PowerWorkflow.Workflow
+﻿using System;
+
+namespace PowerWorkflow.Workflow
 {
     public class PowerThreadRole:PowerThreadBaseObject
     {
 
-        public PowerThreadRole(string name) : base(name)
+        public PowerThreadRole(Guid objectId, string name) : base(objectId, name)
         {
 
         }

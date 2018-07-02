@@ -1,4 +1,6 @@
-﻿namespace PowerWorkflow.Workflow
+﻿using System;
+
+namespace PowerWorkflow.Workflow
 {
     /// <summary>
     /// 实体对象， 用来提交数据用
@@ -6,7 +8,7 @@
     /// </summary>
     public class PowerThreadEntity : PowerThreadBaseObject
     {
-        public PowerThreadEntity(string name) : base(name)
+        public PowerThreadEntity(Guid objectId, string name) : base(objectId, name)
         {
 
         }

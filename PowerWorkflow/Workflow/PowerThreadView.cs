@@ -1,9 +1,11 @@
-﻿namespace PowerWorkflow.Workflow
+﻿using System;
+
+namespace PowerWorkflow.Workflow
 {
     public class PowerThreadView
         : PowerThreadBaseObject, IPowerThreadEntityBindable
     {
-        public PowerThreadView(string name) : base(name)
+        public PowerThreadView(Guid objectId, string name) : base(objectId, name)
         {
 
         }

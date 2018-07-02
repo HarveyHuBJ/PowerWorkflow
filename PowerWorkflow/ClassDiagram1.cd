@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical">
-  <Class Name="PowerWorkflow.Workflow.PowerThreadFactory" Collapsed="true">
-    <Position X="20.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAAgAAABAgAAAAAABAAEAAQAAAAAIAAAAAAAAA=</HashCode>
-      <FileName>Workflow\PowerThreadFactory.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PowerWorkflow.Workflow.PowerThreadView" Collapsed="true">
     <Position X="10.75" Y="3" Width="1.5" />
     <TypeIdentifier>
@@ -25,21 +18,21 @@
   <Class Name="PowerWorkflow.Workflow.PowerThreadNode" Collapsed="true">
     <Position X="13" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>ABACAAAIEAACAAAQAAAAEAAAAAAAAAAQAAAEAAACBAA=</HashCode>
+      <HashCode>ABACAAAIFAAGAAAQAAAAEAAAAAAAAAAQABAEAAACBAA=</HashCode>
       <FileName>Workflow\PowerThreadNode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PowerWorkflow.Workflow.PowerThread">
     <Position X="1.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAgJIAAAgAAAABAAAAAAAAAAgAAAAAAAARAAAAAAAA=</HashCode>
+      <HashCode>AgAgJMAAAgAAAABAAAAAAAQAAgAAAAAAQARBREAAQAA=</HashCode>
       <FileName>Workflow\PowerThread.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PowerWorkflow.Workflow.PowerVariable" Collapsed="true">
     <Position X="17.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Workflow\PowerVariable.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -48,13 +41,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Workflow\PowerThreadEntity.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PowerWorkflow.Workflow.PowerThreadAction" Collapsed="true">
-    <Position X="8.25" Y="3" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Workflow\PowerThreadAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PowerWorkflow.Workflow.PowerThreadBaseObject" Collapsed="true">
@@ -67,7 +53,7 @@
   <Class Name="PowerWorkflow.Workflow.StandNodeActions" Collapsed="true">
     <Position X="23.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAEAACAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAACAAAAAAAAAAQAAAAAAAAAAAAEAAAAQAA=</HashCode>
       <FileName>Workflow\StandNodeActions.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -93,7 +79,7 @@
       <FileName>Workflow\PowerThreadRoleBox.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PowerWorkflow.PowerThreadDefinition" Collapsed="true">
+  <Class Name="PowerWorkflow.PowerThreadDescription" Collapsed="true">
     <Position X="22" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -105,6 +91,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Workflow\PowerThreadEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerWorkflow.Workflow.PowerThreadBuilder" Collapsed="true">
+    <Position X="20.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAIAAAAAAAAAAAAAAAAAAAgAIAAQAAAgAAAAA=</HashCode>
+      <FileName>Workflow\PowerThreadBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="PowerWorkflow.Workflow.IPowerThreadEntityBindable" Collapsed="true">

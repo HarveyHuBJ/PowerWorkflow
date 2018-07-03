@@ -81,7 +81,7 @@ namespace PowerWorkflow.Workflow
                 return PowerThreadDefaultNodes.DefaultEndNode;
             }
 
-            foreach (var item in transmission.Conditions)
+            foreach (var item in transmission.ConditionBranches)
             {
                 if (item.IsSatisified(context))
                 {
@@ -100,32 +100,42 @@ namespace PowerWorkflow.Workflow
 
         public Transmission()
         {
-            Conditions = new List<TransmissionCondition>();
+            ConditionBranches = new List<TransmissionConditionBranch>();
         }
 
         public Transmission(PowerThreadNode from, PowerThreadNode to)
         {
             this.FromNode = from;
-            Conditions = new List<TransmissionCondition>() {
-                new TransmissionCondition{ ToNode = to }
+            ConditionBranches = new List<TransmissionConditionBranch>() {
+                new TransmissionConditionBranch{Condition= TransmissionCondition.Default, ToNode = to }
             };
         }
         public PowerThreadNode FromNode { get; set; }
-        public IList<PowerThreadNode> ToNodes { get { return Conditions.Select(p => p.ToNode).ToList(); } }
+        public IList<PowerThreadNode> ToNodes { get { return ConditionBranches.Select(p => p.ToNode).ToList(); } }
 
-        public IList<TransmissionCondition> Conditions { get; set; } = new List<TransmissionCondition>();
+        public IList<TransmissionConditionBranch> ConditionBranches { get; set; } = new List<TransmissionConditionBranch>();
+    }
+
+    public class TransmissionConditionBranch
+    {
+
+        public TransmissionCondition Condition { get; set; }
+        public PowerThreadNode ToNode { get; set; }
+
+
     }
 
     public class TransmissionCondition
     {
+        /// <summary>
+        /// Without judgement
+        /// </summary>
+        public static TransmissionCondition Default = new TransmissionCondition();
 
         public virtual bool IsSatisified(PowerThreadContext context)
         {
             return true;
         }
-        public PowerThreadNode ToNode { get; set; }
-
-
     }
 
     public class VariableTransmissionCondition : TransmissionCondition
@@ -136,10 +146,10 @@ namespace PowerWorkflow.Workflow
 
 
 
-        public bool IsSatisified(PowerThreadContext context)
+        public override bool IsSatisified(PowerThreadContext context)
         {
             // TODO:  test from context variables;
-            return true;
+            return base.IsSatisified(context);
         }
     }
 

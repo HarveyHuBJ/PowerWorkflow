@@ -24,11 +24,11 @@ namespace PowerWorkflow.Workflow
         public void RegisterDefaultForm(PowerThreadForm form)
         {
             this.DefaultForm = form;
-            this.DefaultForm.Actions.GoNext += this.GoNext;
-            this.DefaultForm.Actions.SaveForm += this.SaveForm;
-            this.DefaultForm.Actions.Terminate += this.Terminate;
-            this.DefaultForm.Actions.SetVariable += this.SetContextVariable;
-            this.DefaultForm.Actions.GetVariable += this.GetContextVariable;
+            this.DefaultForm.GoNext += this.GoNext;
+            this.DefaultForm.SaveForm += this.SaveForm;
+            this.DefaultForm.Terminate += this.Terminate;
+            this.DefaultForm.SetVariable += this.SetContextVariable;
+            this.DefaultForm.GetVariable += this.GetContextVariable;
         }
 
         /// <summary>
@@ -97,12 +97,12 @@ namespace PowerWorkflow.Workflow
         /// <summary>
         /// Power Thread 的Node上， Responsible角色使用的默认的Form
         /// </summary>
-        public PowerThreadForm DefaultForm { get; set; }
+        public PowerThreadForm DefaultForm { get; private set; }
 
         /// <summary>
         /// Power Thread 的Node上， 各个角色使用的默认的View
         /// </summary>
-        public PowerThreadView DefaultView { get; set; }
+        public PowerThreadView DefaultView { get; private set; }
 
         /// <summary>
         /// Power Thread 的Node上， 给特殊的角色指定可以提交数据的Form， 但不能改变流程走向

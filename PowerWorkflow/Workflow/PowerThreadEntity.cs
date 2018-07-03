@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PowerWorkflow.Workflow
 {
@@ -8,9 +9,12 @@ namespace PowerWorkflow.Workflow
     /// </summary>
     public class PowerThreadEntity : PowerThreadBaseObject
     {
+
+        private IDictionary<string, object> properties { get; set; }
+
         public PowerThreadEntity(Guid objectId, string name) : base(objectId, name)
         {
-
+            properties = new Dictionary<string, object>();
         }
     }
 }

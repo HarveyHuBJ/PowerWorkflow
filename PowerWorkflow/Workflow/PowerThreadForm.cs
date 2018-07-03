@@ -1,24 +1,46 @@
-﻿using System;
+﻿using PowerWorkflow.Workflow.Events;
+using System;
 
 namespace PowerWorkflow.Workflow
 {
     public class PowerThreadForm : PowerThreadBaseObject, IPowerThreadEntityBindable
 
     {
-        public PowerThreadForm(Guid objectId, string name) : base(objectId, name)
+        #region events
+
+        public event PowerThreadNodeGoNextEvent GoNext;
+
+        public event PowerThreadNodeSaveFormEvent SaveForm;
+
+        public event PowerThreadNodeTerminateEvent Terminate;
+
+        public event PowerThreadNodeSetVariableEvent SetVariable;
+
+        public event PowerThreadNodeGetVariableEvent GetVariable;
+        #endregion
+
+        public PowerThreadForm(Guid objectId, string name, string formPath) : base(objectId, name)
         {
-            Actions = new StandNodeActions();
+
+            FormPath = FormPath;
+            BindingViewModel = new PowerThreadEntity(Guid.NewGuid(), name + "-Entity");
         }
-        public StandNodeActions Actions { get; set; }
+
 
         /// <summary>
         ///  use razor engine to render the form in the path
         /// </summary>
-        public string FormPath { get; set; }
+        public string FormPath { get; }
 
         /// <summary>
         /// the binding view model, used for submit
         /// </summary>
         public PowerThreadEntity BindingViewModel { get; set; }
+
+        public void Go()
+        {
+            GoNext(this, new PowerThreadNodeGoNextEventArgs());
+        }
+
     }
 }

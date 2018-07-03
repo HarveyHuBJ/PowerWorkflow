@@ -12,7 +12,7 @@ namespace PowerWorkflow.Workflow.Tests
     public class PowerThreadBuilderTests
     {
         [TestMethod()]
-        public void BuildTest()
+        public void Builder_01ThreadNextNode_Test()
         {
             PowerThreadDescription description = new PowerThreadDescription();
             PowerThreadBuilderForTest builder = new PowerThreadBuilderForTest(description, Guid.NewGuid(), "test thread");
@@ -43,6 +43,31 @@ namespace PowerWorkflow.Workflow.Tests
             //  thread.TerminateThreadAtNode(thread.CurrentNode);
 
         }
+
+        [TestMethod()]
+        public void Builder_02FormNextNode_Test()
+        {
+            PowerThreadDescription description = new PowerThreadDescription();
+            PowerThreadBuilderForTest builder = new PowerThreadBuilderForTest(description, Guid.NewGuid(), "test thread");
+            var thread = builder.Build();
+
+            PrintThreadCurrentNode(thread);
+
+
+            RoleSettings roleSettings = new RoleSettings();
+            Dictionary<string, string> varialbes = new Dictionary<string, string>();
+            thread.StartWith(roleSettings, varialbes);
+            PrintThreadCurrentNode(thread);
+
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNode(thread);
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNode(thread);
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNode(thread);
+
+        }
+
 
         private void PrintThreadCurrentNode(PowerThread thread)
         {

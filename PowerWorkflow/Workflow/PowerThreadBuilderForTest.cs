@@ -12,31 +12,14 @@ namespace PowerWorkflow.Workflow
 
         protected override PowerThreadStateMachine BuildStateMachine(PowerThreadContext context)
         {
-            Guid[] ids = new Guid[] {
-                Guid.NewGuid(),Guid.NewGuid(),Guid.NewGuid(),Guid.NewGuid(),Guid.NewGuid()
-            };
+            var nodes = context.PowerThread.Nodes;
 
             PowerThreadStateMachine result = new PowerThreadStateMachine();
             result.Transmissions = new List<Transmission> {
-                   new Transmission(
-                       PowerThreadDefaultNodes.DefaultStartNode,
-                    new PowerThreadNode(ids[0], "node1",context )
-                    ),
-
-                  new Transmission(
-                    new PowerThreadNode(ids[0], "node1",context )
-                    ,new PowerThreadNode(ids[1], "node2",context )
-                    ),
-
-                   new Transmission(
-                    new PowerThreadNode(ids[1], "node2",context )
-                    ,new PowerThreadNode(ids[2], "node3",context )
-                    ),
-
-                    new Transmission(
-                    new PowerThreadNode(ids[2], "node3",context )
-                    ,  PowerThreadDefaultNodes.DefaultEndNode
-                    )
+                   new Transmission( PowerThreadDefaultNodes.DefaultStartNode, nodes[0]),
+                   new Transmission( nodes[0],nodes[1]),
+                   new Transmission( nodes[1],nodes[2]),
+                   new Transmission(nodes[2],  PowerThreadDefaultNodes.DefaultEndNode )
         };
 
             return result;
@@ -51,7 +34,13 @@ namespace PowerWorkflow.Workflow
         protected override IList<PowerThreadForm> BuildForms(
           PowerThreadContext context)
         {
-            return new List<PowerThreadForm>();
+            var items = new List<PowerThreadForm>() {
+                new PowerThreadForm(Guid.NewGuid(), "form1", "/forms/form1.cshtml")
+               , new PowerThreadForm(Guid.NewGuid(), "form2", "/forms/form2.cshtml")
+               , new PowerThreadForm(Guid.NewGuid(), "form3", "/forms/form3.cshtml")
+            };
+
+            return items;
         }
 
         protected override IList<PowerThreadRole> BuildRoles(
@@ -63,9 +52,36 @@ namespace PowerWorkflow.Workflow
         protected override IList<PowerThreadNode> BuildNodes(
           PowerThreadContext context)
         {
-            return new List<PowerThreadNode>();
+            var forms = context.PowerThread.Forms;
+            var views = context.PowerThread.Views;
+
+            var items = new List<PowerThreadNode>() {
+                new PowerThreadNode(Guid.NewGuid(), "node1", context) 
+               ,new PowerThreadNode(Guid.NewGuid(), "node2", context) 
+               ,new PowerThreadNode(Guid.NewGuid(), "node3", context) 
+            };
+
+            items[0].RegisterDefaultForm(forms[0]);
+            items[1].RegisterDefaultForm(forms[1]);
+            items[2].RegisterDefaultForm(forms[2]);
+
+
+            items[0].RegisterDefaultView(views[0]);
+            items[1].RegisterDefaultView(views[1]);
+            items[2].RegisterDefaultView(views[2]);
+
+            return items;
         }
 
+        protected override IList<PowerThreadView> BuildViews(PowerThreadContext context)
+        {
+            var items = new List<PowerThreadView>() {
+                new PowerThreadView(Guid.NewGuid(),  "view1", "/views/view1.cshtml")
+               , new PowerThreadView(Guid.NewGuid(), "view2", "/views/view2.cshtml")
+               , new PowerThreadView(Guid.NewGuid(), "view3", "/views/view3.cshtml")
+            };
 
+            return items;
+        }
     }
 }

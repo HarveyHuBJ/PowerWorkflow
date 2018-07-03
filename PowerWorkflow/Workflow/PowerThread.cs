@@ -1,8 +1,8 @@
 ﻿using PowerWorkflow.Enums;
+using PowerWorkflow.Workflow.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PowerWorkflow.Workflow.Exceptions;
 
 namespace PowerWorkflow.Workflow
 {
@@ -120,7 +120,6 @@ namespace PowerWorkflow.Workflow
             else
             {
                 StateMachine.Next(Context, CurrentNode);
-
             }
         }
 

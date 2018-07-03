@@ -7,7 +7,7 @@ namespace PowerWorkflow.Workflow
     {
         public PowerThreadForm(Guid objectId, string name) : base(objectId, name)
         {
-
+            Actions = new StandNodeActions();
         }
         public StandNodeActions Actions { get; set; }
 

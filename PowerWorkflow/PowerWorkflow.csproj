@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Enums\PowerThreadStateEnums.cs" />
     <Compile Include="Exceptions\InvalidTransmissionSinceThreadAlreadyEnd.cs" />
+    <Compile Include="Exceptions\PowerThreadException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workflow\BasePowerThreadBuilder.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeEvents.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeGetVariableEventEventArgs.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeGoNextEventArgs.cs" />
@@ -55,7 +57,7 @@
     <Compile Include="Workflow\PowerThread.cs" />
     <Compile Include="Workflow\PowerThreadAction.cs" />
     <Compile Include="Workflow\PowerThreadBaseObject.cs" />
-    <Compile Include="Workflow\PowerThreadBuilder.cs" />
+    <Compile Include="Workflow\PowerThreadBuilderForTest.cs" />
     <Compile Include="Workflow\PowerThreadContext.cs" />
     <Compile Include="Workflow\PowerThreadDefaultNodes.cs" />
     <Compile Include="Workflow\PowerThreadDefinition.cs" />

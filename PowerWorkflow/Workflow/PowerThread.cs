@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PowerWorkflow.Workflow.Exceptions;
 
 namespace PowerWorkflow.Workflow
 {
@@ -108,6 +109,19 @@ namespace PowerWorkflow.Workflow
         {
             // todo
             StateMachine.Next(Context, fromNode);
+        }
+
+        public void GoNextNode()
+        {
+            if (CurrentNode == null)
+            {
+                throw new InvalidThreadActionException("Current node is null!");
+            }
+            else
+            {
+                StateMachine.Next(Context, CurrentNode);
+
+            }
         }
 
         public void TerminateThreadAtNode(PowerThreadNode fromNode)

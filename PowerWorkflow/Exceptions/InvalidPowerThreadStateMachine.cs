@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace PowerWorkflow.Workflow.Exceptions
 {
     [Serializable]
-    internal class InvalidPowerThreadStateMachine : Exception
+    internal class InvalidPowerThreadStateMachine : PowerThreadException
     {
         public InvalidPowerThreadStateMachine()
         {

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace PowerWorkflow.Workflow.Exceptions
 {
     [Serializable]
-    internal class InvalidTransmissionSinceThreadAlreadyEnd : Exception
+    internal class InvalidTransmissionSinceThreadAlreadyEnd : PowerThreadException
     {
         public InvalidTransmissionSinceThreadAlreadyEnd()
         {

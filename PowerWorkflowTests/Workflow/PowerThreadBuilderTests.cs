@@ -14,9 +14,9 @@ namespace PowerWorkflow.Workflow.Tests
         [TestMethod()]
         public void BuildTest()
         {
-            PowerThreadBuilder builder = new PowerThreadBuilder();
             PowerThreadDescription description = new PowerThreadDescription();
-            var thread = builder.Build(description, Guid.NewGuid(), "test thread");
+            PowerThreadBuilderForTest builder = new PowerThreadBuilderForTest(description, Guid.NewGuid(), "test thread");
+            var thread = builder.Build();
 
             PrintThreadCurrentNode(thread);
 
@@ -35,12 +35,8 @@ namespace PowerWorkflow.Workflow.Tests
             thread.GoNextNode(thread.CurrentNode);
             PrintThreadCurrentNode(thread);
 
-
             thread.GoNextNode(thread.CurrentNode);
             PrintThreadCurrentNode(thread);
-
-
-
 
             thread.GoNextNode(thread.CurrentNode);
             PrintThreadCurrentNode(thread);

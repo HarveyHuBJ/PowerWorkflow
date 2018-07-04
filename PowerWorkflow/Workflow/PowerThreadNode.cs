@@ -6,36 +6,67 @@ namespace PowerWorkflow.Workflow
 {
     public class PowerThreadNode : PowerThreadBaseObject
     {
+        #region fields and properties
         private PowerThreadContext context = null;
-        
+
+        /// <summary>
+        /// Power Thread 的节点上定义的各个角色
+        /// </summary>
+        public PowerThreadRoleBox RoleBox { get; set; }
+
+        /// <summary>
+        /// 渲染对应的forms和views
+        ///   
+        /// 只有当前节点是current node， 才会有form渲染
+        /// 只渲染当前role 对应的form
+        /// </summary>
+        /// <returns></returns>
+        public string RenderPage()
+        {
+            throw new NotImplementedException();
+
+            /*
+             form 数据的提交通过标准的ajax API 
+             form 如果要加载一些特殊的数据， 也可以ajax请求指定的api
+
+             form 提交的数据 以jObject的格式， 保存到view model中
+             form 中的表格数据处理？
+             form 中上传文件的处理？
+             */
+        }
+
+        /// <summary>
+        /// Power Thread 的Node上， Responsible角色使用的默认的Form
+        /// </summary>
+        public PowerThreadForm DefaultForm { get; private set; }
+
+        /// <summary>
+        /// Power Thread 的Node上， 各个角色使用的默认的View
+        /// </summary>
+        public PowerThreadView DefaultView { get; private set; }
+
+        /// <summary>
+        /// Power Thread 的Node上， 给特殊的角色指定可以提交数据的Form， 但不能改变流程走向
+        /// </summary>
+        public Dictionary<PowerThreadRole, PowerThreadForm> SideForms { get; set; }
+
+        /// <summary>
+        /// Power Thread 的Node上， 给特殊的角色指定可以查看数据的View
+        /// </summary>
+        public Dictionary<PowerThreadRole, PowerThreadView> SideViews { get; set; }
+
+        /// <summary>
+        ///  是否流程终止节点
+        /// </summary>
+        public bool IsEnd { get; internal set; }
+        public bool IsStart { get; internal set; }
+        #endregion   
         public PowerThreadNode(Guid objectId, string name, PowerThreadContext context) : base(objectId, name)
         {
             this.context = context;
         }
 
-        /// <summary>
-        ///  注册默认表单
-        /// </summary>
-        /// <param name="form"></param>
-        public void RegisterDefaultForm(PowerThreadForm form)
-        {
-            this.DefaultForm = form;
-            this.DefaultForm.GoNext += this.GoNext;
-            this.DefaultForm.SaveForm += this.SaveForm;
-            this.DefaultForm.Terminate += this.Terminate;
-            this.DefaultForm.SetVariable += this.SetContextVariable;
-            this.DefaultForm.GetVariable += this.GetContextVariable;
-        }
-
-        /// <summary>
-        ///  注册默认数据显示页
-        /// </summary>
-        /// <param name="view"></param>
-        public void RegisterDefaultView(PowerThreadView view)
-        {
-            this.DefaultView = view;
-        }
-
+        #region events
         /// <summary>
         /// 获取上下文变量的值
         /// </summary>
@@ -90,59 +121,32 @@ namespace PowerWorkflow.Workflow
         {
             context.PowerThread.GoNextNode(this);
         }
+        #endregion
 
+        #region methods
         /// <summary>
-        /// Power Thread 的节点上定义的各个角色
+        ///  注册默认表单
         /// </summary>
-        public PowerThreadRoleBox RoleBox { get; set; }
-
-        /// <summary>
-        /// 渲染对应的forms和views
-        ///   
-        /// 只有当前节点是current node， 才会有form渲染
-        /// 只渲染当前role 对应的form
-        /// </summary>
-        /// <returns></returns>
-        public string RenderPage()
+        /// <param name="form"></param>
+        public void RegisterDefaultForm(PowerThreadForm form)
         {
-            throw new NotImplementedException();
-
-            /*
-             form 数据的提交通过标准的ajax API 
-             form 如果要加载一些特殊的数据， 也可以ajax请求指定的api
-
-             form 提交的数据 以jObject的格式， 保存到view model中
-             form 中的表格数据处理？
-             form 中上传文件的处理？
-             */
+            this.DefaultForm = form;
+            this.DefaultForm.GoNext += this.GoNext;
+            this.DefaultForm.SaveForm += this.SaveForm;
+            this.DefaultForm.Terminate += this.Terminate;
+            this.DefaultForm.SetVariable += this.SetContextVariable;
+            this.DefaultForm.GetVariable += this.GetContextVariable;
         }
 
         /// <summary>
-        /// Power Thread 的Node上， Responsible角色使用的默认的Form
+        ///  注册默认数据显示页
         /// </summary>
-        public PowerThreadForm DefaultForm { get; private set; }
-
-        /// <summary>
-        /// Power Thread 的Node上， 各个角色使用的默认的View
-        /// </summary>
-        public PowerThreadView DefaultView { get; private set; }
-
-        /// <summary>
-        /// Power Thread 的Node上， 给特殊的角色指定可以提交数据的Form， 但不能改变流程走向
-        /// </summary>
-        public Dictionary<PowerThreadRole, PowerThreadForm> SideForms { get; set; }
-
-        /// <summary>
-        /// Power Thread 的Node上， 给特殊的角色指定可以查看数据的View
-        /// </summary>
-        public Dictionary<PowerThreadRole, PowerThreadView> SideViews { get; set; }
-
-        /// <summary>
-        ///  是否流程终止节点
-        /// </summary>
-        public bool IsEnd { get; internal set; }
-        public bool IsStart { get; internal set; }
-
+        /// <param name="view"></param>
+        public void RegisterDefaultView(PowerThreadView view)
+        {
+            this.DefaultView = view;
+        }
+        #endregion
 
         #region Data access from data layer
 
@@ -154,10 +158,10 @@ namespace PowerWorkflow.Workflow
             throw new NotImplementedException();
         }
 
-        private void LoadData(
+        private PowerThreadEntity LoadFormData(
             PowerThreadContext context
             , PowerThreadForm form
-            , PowerThreadEntity formData)
+            )
         {
             throw new NotImplementedException();
         }

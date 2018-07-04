@@ -84,7 +84,7 @@ namespace PowerWorkflow.Workflow.Tests
             PrintThreadCurrentNode(thread);
 
             var html = thread.CurrentNode.DefaultForm.RenderHtml();
-            var html = thread.CurrentNode.RenderPage();
+            var html2 = thread.CurrentNode.RenderPage();
 
 
         }

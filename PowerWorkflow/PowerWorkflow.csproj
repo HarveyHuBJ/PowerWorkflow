@@ -72,7 +72,6 @@
     <Compile Include="Description\Thread.cs" />
     <Compile Include="Workflow\PowerVariable.cs" />
     <Compile Include="Workflow\RoleSettings.cs" />
-    <Compile Include="Workflow\StandNodeActions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

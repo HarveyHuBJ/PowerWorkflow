@@ -68,8 +68,29 @@ namespace PowerWorkflow.Workflow.Tests
 
         }
 
+        [TestMethod()]
+        public void Builder_03RenderForm_Test()
+        {
+            PowerThreadDescription description = new PowerThreadDescription();
+            PowerThreadBuilderForTest builder = new PowerThreadBuilderForTest(description, Guid.NewGuid(), "test thread");
+            var thread = builder.Build();
 
-        private void PrintThreadCurrentNode(PowerThread thread)
+            PrintThreadCurrentNode(thread);
+
+
+            RoleSettings roleSettings = new RoleSettings();
+            Dictionary<string, string> varialbes = new Dictionary<string, string>();
+            thread.StartWith(roleSettings, varialbes);
+            PrintThreadCurrentNode(thread);
+
+            var html = thread.CurrentNode.DefaultForm.RenderHtml();
+            var html = thread.CurrentNode.RenderPage();
+
+
+        }
+
+
+            private void PrintThreadCurrentNode(PowerThread thread)
         {
             Console.WriteLine(thread.CurrentNode?.Name + " " + thread.State);
         }

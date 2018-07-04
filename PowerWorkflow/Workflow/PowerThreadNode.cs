@@ -7,18 +7,14 @@ namespace PowerWorkflow.Workflow
     public class PowerThreadNode : PowerThreadBaseObject
     {
         private PowerThreadContext context = null;
-
-        //public event PowerThreadNodeGoNextEvent GoNext;
-        //public event PowerThreadNodeSaveFormEvent SaveForm;
-        //public event PowerThreadNodeTerminateEvent Terminate;
-
+        
         public PowerThreadNode(Guid objectId, string name, PowerThreadContext context) : base(objectId, name)
         {
             this.context = context;
         }
 
         /// <summary>
-        ///  注册默认缺省表单
+        ///  注册默认表单
         /// </summary>
         /// <param name="form"></param>
         public void RegisterDefaultForm(PowerThreadForm form)
@@ -32,7 +28,7 @@ namespace PowerWorkflow.Workflow
         }
 
         /// <summary>
-        ///  注册默认缺省数据显示页
+        ///  注册默认数据显示页
         /// </summary>
         /// <param name="view"></param>
         public void RegisterDefaultView(PowerThreadView view)
@@ -77,8 +73,14 @@ namespace PowerWorkflow.Workflow
         /// <param name="args"></param>
         private void SaveForm(object sender, PowerThreadNodeSaveFormEventArgs args)
         {
+            PowerThreadForm form = (PowerThreadForm)sender;
+
+            var formData = args.Entity;
+
+            PersistData(context, form, formData);
         }
 
+     
         /// <summary>
         /// 流程行进到下一个环节
         /// </summary>
@@ -93,6 +95,27 @@ namespace PowerWorkflow.Workflow
         /// Power Thread 的节点上定义的各个角色
         /// </summary>
         public PowerThreadRoleBox RoleBox { get; set; }
+
+        /// <summary>
+        /// 渲染对应的forms和views
+        ///   
+        /// 只有当前节点是current node， 才会有form渲染
+        /// 只渲染当前role 对应的form
+        /// </summary>
+        /// <returns></returns>
+        public string RenderPage()
+        {
+            throw new NotImplementedException();
+
+            /*
+             form 数据的提交通过标准的ajax API 
+             form 如果要加载一些特殊的数据， 也可以ajax请求指定的api
+
+             form 提交的数据 以jObject的格式， 保存到view model中
+             form 中的表格数据处理？
+             form 中上传文件的处理？
+             */
+        }
 
         /// <summary>
         /// Power Thread 的Node上， Responsible角色使用的默认的Form
@@ -119,5 +142,27 @@ namespace PowerWorkflow.Workflow
         /// </summary>
         public bool IsEnd { get; internal set; }
         public bool IsStart { get; internal set; }
+
+
+        #region Data access from data layer
+
+        private void PersistData(
+            PowerThreadContext context
+            , PowerThreadForm form
+            , PowerThreadEntity formData)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void LoadData(
+            PowerThreadContext context
+            , PowerThreadForm form
+            , PowerThreadEntity formData)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
     }
 }

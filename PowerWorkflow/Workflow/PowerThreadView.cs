@@ -19,5 +19,10 @@ namespace PowerWorkflow.Workflow
         /// the binding view model, used for rendering
         /// </summary>
         public PowerThreadEntity BindingViewModel { get; set; }
+
+        public string RenderHtml()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

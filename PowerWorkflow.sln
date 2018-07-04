@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerWorkflow", "PowerWorkf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerWorkflowTests", "PowerWorkflowTests\PowerWorkflowTests.csproj", "{1DF4EB5B-9865-4BAC-B015-3475534061AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerWorkflowDemoWeb", "PowerWorkflowDemoWeb\PowerWorkflowDemoWeb.csproj", "{347E0F82-DBF1-4BA8-A3A6-1BC178DA68E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1DF4EB5B-9865-4BAC-B015-3475534061AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF4EB5B-9865-4BAC-B015-3475534061AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF4EB5B-9865-4BAC-B015-3475534061AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347E0F82-DBF1-4BA8-A3A6-1BC178DA68E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347E0F82-DBF1-4BA8-A3A6-1BC178DA68E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347E0F82-DBF1-4BA8-A3A6-1BC178DA68E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347E0F82-DBF1-4BA8-A3A6-1BC178DA68E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

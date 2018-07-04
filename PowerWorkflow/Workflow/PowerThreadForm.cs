@@ -42,5 +42,14 @@ namespace PowerWorkflow.Workflow
             GoNext(this, new PowerThreadNodeGoNextEventArgs());
         }
 
+        public void Save()
+        {
+            SaveForm(this, new PowerThreadNodeSaveFormEventArgs() { Entity = BindingViewModel  });
+        }
+
+        public string RenderHtml()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

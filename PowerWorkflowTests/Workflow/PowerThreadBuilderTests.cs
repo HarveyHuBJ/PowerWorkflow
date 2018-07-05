@@ -84,15 +84,50 @@ namespace PowerWorkflow.Workflow.Tests
             PrintThreadCurrentNode(thread);
 
             var html = thread.CurrentNode.DefaultForm.RenderHtml();
-            var html2 = thread.CurrentNode.RenderPage();
+            //  var html2 = thread.CurrentNode.RenderPage();
 
 
         }
 
+        [TestMethod()]
+        public void Builder_04RenderNodePage_Test()
+        {
+            PowerThreadDescription description = new PowerThreadDescription();
+            PowerThreadBuilderForTest builder =
+                new PowerThreadBuilderForTest(description, Guid.NewGuid(), "test thread");
+            var thread = builder.Build();
 
-            private void PrintThreadCurrentNode(PowerThread thread)
+            PrintThreadCurrentNode(thread);
+
+
+            RoleSettings roleSettings = new RoleSettings();
+            Dictionary<string, string> varialbes = new Dictionary<string, string>();
+            thread.StartWith(roleSettings, varialbes);
+            PrintThreadCurrentNodePage(thread);
+
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNodePage(thread);
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNodePage(thread);
+            thread.CurrentNode.DefaultForm.Go();
+            PrintThreadCurrentNodePage(thread);
+
+        }
+
+
+
+
+        private void PrintThreadCurrentNode(PowerThread thread)
         {
             Console.WriteLine(thread.CurrentNode?.Name + " " + thread.State);
+        }
+        private void PrintThreadCurrentNodePage(PowerThread thread)
+        {
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine(thread.CurrentNode?.Name + " " + thread.State);
+            Console.WriteLine(thread.CurrentNode?.DefaultForm?.RenderHtml());
+            //Console.WriteLine(thread.CurrentNode.DefaultView.RenderHtml());
+            Console.WriteLine();
         }
     }
 }

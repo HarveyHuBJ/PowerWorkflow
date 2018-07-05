@@ -35,9 +35,9 @@ namespace PowerWorkflow.Workflow
           PowerThreadContext context)
         {
             var items = new List<PowerThreadForm>() {
-                new PowerThreadForm(Guid.NewGuid(), "form1", "/forms/form1.cshtml")
-               , new PowerThreadForm(Guid.NewGuid(), "form2", "/forms/form2.cshtml")
-               , new PowerThreadForm(Guid.NewGuid(), "form3", "/forms/form3.cshtml")
+                new PowerThreadForm(Guid.NewGuid(), "form1", "_testdata/forms/form1.cshtml")
+               , new PowerThreadForm(Guid.NewGuid(), "form2", "_testdata/forms/form2.cshtml")
+               , new PowerThreadForm(Guid.NewGuid(), "form3", "_testdata/forms/form3.cshtml")
             };
 
             return items;

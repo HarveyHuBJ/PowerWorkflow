@@ -6,7 +6,9 @@
 
     public delegate void PowerThreadNodeTerminateEvent(object sender, PowerThreadNodeTerminateEventArgs args);
 
-    public delegate void PowerThreadNodeSetVariableEvent(object sender, PowerThreadNodeSetVariableEventEventArgs args);
+    public delegate void PowerThreadNodeSetVariableEvent(object sender, PowerThreadNodeSetVariableEventArgs args);
 
-    public delegate void PowerThreadNodeGetVariableEvent(object sender, PowerThreadNodeGetVariableEventEventArgs args);
+    public delegate void PowerThreadNodeGetVariableEvent(object sender, PowerThreadNodeGetVariableEventArgs args);
+
+    public delegate void PowerThreadNodeLoadEvent(object sender, PowerThreadNodeLoadEventArgs args);
 }

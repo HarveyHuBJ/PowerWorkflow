@@ -1,5 +1,6 @@
 ﻿using PowerWorkflow.Enums;
 using PowerWorkflow.Workflow.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,6 +42,11 @@ namespace PowerWorkflow.Workflow
             if (toNode != null)
             {
                 context.PowerThread.SetCurrentNode(toNode);
+                if (!IsEndNode(toNode))
+                {
+                    toNode.LoadNode();
+                }
+
                 if (toNode.IsEnd)
                 {
                     context.PowerThread.SetState(PowerThreadState.End);
@@ -59,6 +65,11 @@ namespace PowerWorkflow.Workflow
                 // 如果找不到下一个节点， 也认为其结束。
                 context.PowerThread.SetState(PowerThreadState.End);
             }
+        }
+
+        private bool IsEndNode(PowerThreadNode toNode)
+        {
+            return toNode.Equals(PowerThreadDefaultNodes.DefaultEndNode);
         }
 
         private bool IsUnfound(PowerThreadNode toNode)

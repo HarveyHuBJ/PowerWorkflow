@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
@@ -54,10 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Workflow\BasePowerThreadBuilder.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeEvents.cs" />
-    <Compile Include="Workflow\Events\PowerThreadNodeGetVariableEventEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeGetVariableEventArgs.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeGoNextEventArgs.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeSaveFormEventArgs.cs" />
-    <Compile Include="Workflow\Events\PowerThreadNodeSetVariableEventEventArgs.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeSetVariableEventArgs.cs" />
     <Compile Include="Workflow\Events\PowerThreadNodeTerminateEventArgs.cs" />
     <Compile Include="Exceptions\InvalidThreadActionException.cs" />
     <Compile Include="Exceptions\InvalidPowerThreadStateMachine.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="Workflow\PowerThreadEntity.cs" />
     <Compile Include="Workflow\PowerThreadForm.cs" />
     <Compile Include="Workflow\PowerThreadNode.cs" />
+    <Compile Include="Workflow\Events\PowerThreadNodeLoadEventArgs.cs" />
     <Compile Include="Workflow\PowerThreadRole.cs" />
     <Compile Include="Workflow\PowerThreadRoleBox.cs" />
     <Compile Include="Workflow\PowerThreadStateMachine.cs" />

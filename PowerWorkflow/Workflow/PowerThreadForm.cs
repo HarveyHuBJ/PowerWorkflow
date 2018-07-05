@@ -2,6 +2,7 @@
 using System;
 using RazorEngine;
 using PowerWorkflow.Common;
+using System.IO;
 
 namespace PowerWorkflow.Workflow
 {
@@ -31,13 +32,16 @@ namespace PowerWorkflow.Workflow
         public event PowerThreadNodeSetVariableEvent SetVariable;
 
         public event PowerThreadNodeGetVariableEvent GetVariable;
+
+        public event PowerThreadNodeLoadEvent LoadForm;
+
         #endregion
 
         public PowerThreadForm(Guid objectId, string name, string formPath) : base(objectId, name)
         {
 
-            FormPath = FormPath;
-            BindingViewModel = new PowerThreadEntity(Guid.NewGuid(), name + "-Entity");
+            this.FormPath = formPath;
+            this.BindingViewModel = new PowerThreadEntity(Guid.NewGuid(), name + "-Entity");
         }
 
         #region actions of form
@@ -45,19 +49,25 @@ namespace PowerWorkflow.Workflow
 
         public void Go()
         {
-            GoNext(this, new PowerThreadNodeGoNextEventArgs());
+            GoNext?.Invoke(this, new PowerThreadNodeGoNextEventArgs());
         }
 
         public void Save()
         {
-            SaveForm(this, new PowerThreadNodeSaveFormEventArgs() { Entity = BindingViewModel  });
+
+            SaveForm?.Invoke(this, new PowerThreadNodeSaveFormEventArgs() { Entity = BindingViewModel });
         }
 
+        public void Load()
+        {
+            LoadForm?.Invoke(this, new PowerThreadNodeLoadEventArgs());
+        }
         #endregion
 
         public string RenderHtml()
         {
-            var result = RazorHelper.Parse("<h1>@Model.Name</h1>", new { Name = "Jason" });
+            var cshtml = File.ReadAllText(this.FormPath);
+            var result = RazorHelper.Parse(cshtml, BindingViewModel.Data, this.FormPath);
             return result;
         }
     }

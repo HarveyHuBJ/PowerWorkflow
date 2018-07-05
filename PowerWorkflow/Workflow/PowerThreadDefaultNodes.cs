@@ -19,7 +19,7 @@ namespace PowerWorkflow.Workflow
         {
             get
             {
-                return new PowerThreadNode(defaultIds[0], "[Start]", null) { IsStart = true };
+                return new PowerThreadNode(defaultIds[0], "[Start]") { IsStart = true };
             }
         }
 
@@ -27,7 +27,7 @@ namespace PowerWorkflow.Workflow
         {
             get
             {
-                return new PowerThreadNode(defaultIds[1], "[End]", null) { IsEnd = true };
+                return new PowerThreadNode(defaultIds[1], "[End]") { IsEnd = true };
             }
         }
 
@@ -36,7 +36,7 @@ namespace PowerWorkflow.Workflow
         {
             get
             {
-                return new PowerThreadNode(defaultIds[2], "[MissFoundNode]", null) { IsEnd = false };
+                return new PowerThreadNode(defaultIds[2], "[MissFoundNode]") { IsEnd = false };
             }
         }
     }

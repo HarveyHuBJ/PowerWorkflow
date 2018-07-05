@@ -1,4 +1,5 @@
-﻿using PowerWorkflow.Enums;
+﻿using Newtonsoft.Json;
+using PowerWorkflow.Enums;
 using PowerWorkflow.Workflow.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -6,15 +7,23 @@ using System.Linq;
 
 namespace PowerWorkflow.Workflow
 {
+    [Serializable]
     public class PowerThread : PowerThreadBaseObject
     {
+
+        public Guid Id { get;  set; }
+
+
         public PowerThread(Guid objectId, string name) : base(objectId, name)
         {
+            this.Id = Guid.NewGuid();
             this.Context = new PowerThreadContext(this);
         }
 
+        [JsonIgnore]
         public PowerThreadContext Context { get; set; }
 
+        
         public IList<PowerThreadNode> Nodes
         {
             get; set;
@@ -101,9 +110,9 @@ namespace PowerWorkflow.Workflow
         }
 
         public PowerThreadStateMachine StateMachine { get; set; }
-        public PowerThreadState State { get; private set; }
+        public PowerThreadState State { get;  set; }
         public PowerThreadNode CurrentNode { get; set; }
-        public RoleSettings RoleSettings { get; private set; }
+        public RoleSettings RoleSettings { get;  set; }
 
         public void GoNextNode(PowerThreadNode fromNode)
         {
@@ -151,6 +160,14 @@ namespace PowerWorkflow.Workflow
                 variable = new PowerVariable(variableName) { Value = value };
                 this.Variables.Add(variable);
             }
+        }
+
+
+         
+        public string Sink()
+        {
+            string s = JsonConvert.SerializeObject(this);
+            return s;
         }
     }
 }

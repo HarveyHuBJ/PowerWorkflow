@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace PowerWorkflow.Workflow
 {
@@ -10,7 +11,7 @@ namespace PowerWorkflow.Workflow
     public class PowerThreadEntity : PowerThreadBaseObject
     {
 
-        public System.Dynamic.ExpandoObject Data { get;  set; }
+        public ExpandoObject Data { get;  set; }
 
         public PowerThreadEntity(Guid objectId, string name) : base(objectId, name)
         {

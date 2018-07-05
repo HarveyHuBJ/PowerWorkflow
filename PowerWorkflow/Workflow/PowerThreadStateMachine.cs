@@ -1,4 +1,5 @@
-﻿using PowerWorkflow.Enums;
+﻿using Newtonsoft.Json;
+using PowerWorkflow.Enums;
 using PowerWorkflow.Workflow.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace PowerWorkflow.Workflow
         /// </summary>
         public List<Transmission> Transmissions { get; set; }
 
+        [JsonIgnore]
         public PowerThreadNode StartNode
         {
             get
@@ -120,6 +122,8 @@ namespace PowerWorkflow.Workflow
         }
 
         public PowerThreadNode FromNode { get; set; }
+
+        [JsonIgnore]
         public IList<PowerThreadNode> ToNodes { get { return ConditionBranches.Select(p => p.ToNode).ToList(); } }
 
         public IList<TransmissionConditionBranch> ConditionBranches { get; set; } = new List<TransmissionConditionBranch>();

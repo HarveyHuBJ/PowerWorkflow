@@ -2,6 +2,7 @@
 
 namespace PowerWorkflow.Workflow
 {
+    [Serializable]
     public class PowerThreadView
         : PowerThreadBaseObject, IPowerThreadEntityBindable
     {

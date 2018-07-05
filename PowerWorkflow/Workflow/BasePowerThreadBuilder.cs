@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PowerWorkflow.Workflow
 {
@@ -26,11 +28,33 @@ namespace PowerWorkflow.Workflow
             result.Nodes = BuildNodes(result.Context);
             result.StateMachine = BuildStateMachine(result.Context);
 
+            PatchNodes(result.Context);
+
             result.SetCurrentNode(PowerThreadDefaultNodes.DefaultStartNode);
             result.SetState(Enums.PowerThreadState.Initial);
             return result;
         }
-         
+
+        public abstract void PatchNodes(PowerThreadContext context);
+
+        public PowerThread BuildFromSink(Guid threadId, string sinkJson)
+        {
+            if (sinkJson != null)
+            {
+                PowerThread result = JsonConvert.DeserializeObject<PowerThread>(sinkJson);
+
+                /**/
+                result.Context = new PowerThreadContext(result);
+                result.CurrentNode =
+                    result.Nodes.First(p => p.ObjectId == result.CurrentNode.ObjectId);
+
+                PatchNodes(result.Context);
+
+                return result;
+            }
+
+            return null;
+        }
 
         protected abstract IList<PowerThreadForm> BuildForms(PowerThreadContext context);
 

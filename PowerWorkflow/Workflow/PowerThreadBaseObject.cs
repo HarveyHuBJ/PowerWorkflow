@@ -8,6 +8,7 @@ using System.Diagnostics;
 namespace PowerWorkflow.Workflow
 {
     [DebuggerDisplay("{Name}-{ObjectId}")]
+    [Serializable]
     public abstract class PowerThreadBaseObject
     {
         public PowerThreadBaseObject(Guid objectId, string name)
@@ -36,14 +37,11 @@ namespace PowerWorkflow.Workflow
 
         public override bool Equals(object obj)
         {
-
-            var item = (PowerThreadBaseObject)obj;
-
-            if (item == null)
+            if (!(obj is PowerThreadBaseObject))
             {
                 return false;
             }
-
+            var item = (PowerThreadBaseObject)obj;
 
             return item.GetType() == this.GetType() &&
                 item.ObjectId == this.ObjectId;

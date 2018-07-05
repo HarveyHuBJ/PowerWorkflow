@@ -6,6 +6,7 @@ using System.IO;
 
 namespace PowerWorkflow.Workflow
 {
+    [Serializable]
     public class PowerThreadForm : PowerThreadBaseObject, IPowerThreadEntityBindable
 
     {
@@ -27,11 +28,11 @@ namespace PowerWorkflow.Workflow
 
         public event PowerThreadNodeSaveFormEvent SaveForm;
 
-        public event PowerThreadNodeTerminateEvent Terminate;
+        //public event PowerThreadNodeTerminateEvent Terminate;
 
-        public event PowerThreadNodeSetVariableEvent SetVariable;
+        //public event PowerThreadNodeSetVariableEvent SetVariable;
 
-        public event PowerThreadNodeGetVariableEvent GetVariable;
+        //public event PowerThreadNodeGetVariableEvent GetVariable;
 
         public event PowerThreadNodeLoadEvent LoadForm;
 
@@ -54,7 +55,6 @@ namespace PowerWorkflow.Workflow
 
         public void Save()
         {
-
             SaveForm?.Invoke(this, new PowerThreadNodeSaveFormEventArgs() { Entity = BindingViewModel });
         }
 

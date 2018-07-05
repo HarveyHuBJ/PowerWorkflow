@@ -7,6 +7,7 @@ using System.Dynamic;
 
 namespace PowerWorkflow.Workflow
 {
+    [Serializable]
     public class PowerThreadNode : PowerThreadBaseObject
     {
         #region fields and properties
@@ -21,12 +22,12 @@ namespace PowerWorkflow.Workflow
         /// <summary>
         /// Power Thread 的Node上， Responsible角色使用的默认的Form
         /// </summary>
-        public PowerThreadForm DefaultForm { get; private set; }
+        public PowerThreadForm DefaultForm { get; set; }
 
         /// <summary>
         /// Power Thread 的Node上， 各个角色使用的默认的View
         /// </summary>
-        public PowerThreadView DefaultView { get; private set; }
+        public PowerThreadView DefaultView { get; set; }
 
 
 
@@ -43,10 +44,14 @@ namespace PowerWorkflow.Workflow
         /// <summary>
         ///  是否流程终止节点
         /// </summary>
-        public bool IsEnd { get; internal set; }
-        public bool IsStart { get; internal set; }
+        public bool IsEnd { get; set; }
+        public bool IsStart { get; set; }
         #endregion   
-        public PowerThreadNode(Guid objectId, string name, PowerThreadContext context) : base(objectId, name)
+        public PowerThreadNode(Guid objectId, string name) : base(objectId, name)
+        {
+        }
+
+        public void SetContext(PowerThreadContext context)
         {
             this.context = context;
         }
@@ -59,7 +64,7 @@ namespace PowerWorkflow.Workflow
         /// <param name="args"></param>
         private void GetContextVariable(object sender, PowerThreadNodeGetVariableEventArgs args)
         {
-            args.Value = context.PowerThread.GetVariable(args.VariableName, args.VariableType);
+            args.Value = context?.PowerThread.GetVariable(args.VariableName, args.VariableType);
         }
 
         /// <summary>
@@ -69,7 +74,7 @@ namespace PowerWorkflow.Workflow
         /// <param name="args"></param>
         private void SetContextVariable(object sender, PowerThreadNodeSetVariableEventArgs args)
         {
-            context.PowerThread.SetVariable(args.VariableName, args.Value);
+            context?.PowerThread.SetVariable(args.VariableName, args.Value);
         }
 
         /// <summary>
@@ -79,7 +84,7 @@ namespace PowerWorkflow.Workflow
         /// <param name="args"></param>
         private void Terminate(object sender, PowerThreadNodeTerminateEventArgs args)
         {
-            context.PowerThread.TerminateThreadAtNode(this);
+            context?.PowerThread.TerminateThreadAtNode(this);
         }
 
         /// <summary>
@@ -133,9 +138,9 @@ namespace PowerWorkflow.Workflow
             this.DefaultForm.GoNext += this.GoNext;
             this.DefaultForm.LoadForm += this.LoadForm;
             this.DefaultForm.SaveForm += this.SaveForm;
-            this.DefaultForm.Terminate += this.Terminate;
-            this.DefaultForm.SetVariable += this.SetContextVariable;
-            this.DefaultForm.GetVariable += this.GetContextVariable;
+            //this.DefaultForm.Terminate += this.Terminate;
+            //this.DefaultForm.SetVariable += this.SetContextVariable;
+            //this.DefaultForm.GetVariable += this.GetContextVariable;
         }
 
         /// <summary>
@@ -194,6 +199,21 @@ namespace PowerWorkflow.Workflow
             , PowerThreadForm form
             , PowerThreadEntity formData)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (form == null)
+            {
+                throw new ArgumentNullException(nameof(form));
+            }
+
+            if (formData == null)
+            {
+                throw new ArgumentNullException(nameof(formData));
+            }
+
             throw new NotImplementedException();
         }
 
@@ -202,6 +222,15 @@ namespace PowerWorkflow.Workflow
             , PowerThreadForm form
             )
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            if (form == null)
+            {
+                throw new ArgumentNullException(nameof(form));
+            }
 
             var json = string.Format("{{Content:\"my content of {0}\"}}", form.Name);
 

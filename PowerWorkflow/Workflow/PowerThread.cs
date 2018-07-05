@@ -109,6 +109,7 @@ namespace PowerWorkflow.Workflow
             get; set;
         }
 
+        [JsonIgnore]
         public PowerThreadStateMachine StateMachine { get; set; }
         public PowerThreadState State { get;  set; }
         public PowerThreadNode CurrentNode { get; set; }
@@ -166,6 +167,8 @@ namespace PowerWorkflow.Workflow
          
         public string Sink()
         {
+            // TODO 简化引用关系， 再序列化
+
             string s = JsonConvert.SerializeObject(this);
             return s;
         }

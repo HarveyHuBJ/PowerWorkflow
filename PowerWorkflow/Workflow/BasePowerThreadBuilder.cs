@@ -26,8 +26,8 @@ namespace PowerWorkflow.Workflow
             result.Forms = BuildForms(result.Context);
             result.Variables = BuildVariables(result.Context);
             result.Nodes = BuildNodes(result.Context);
-            result.StateMachine = BuildStateMachine(result.Context);
 
+            // 引用关系
             PatchNodes(result.Context);
 
             result.SetCurrentNode(PowerThreadDefaultNodes.DefaultStartNode);

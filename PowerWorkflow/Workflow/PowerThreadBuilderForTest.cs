@@ -99,6 +99,10 @@ namespace PowerWorkflow.Workflow
             nodes[0].RegisterDefaultView(views[0]);
             nodes[1].RegisterDefaultView(views[1]);
             nodes[2].RegisterDefaultView(views[2]);
+
+            // rebuild state machine
+            context.PowerThread.StateMachine = BuildStateMachine(context);
+
         }
 
         protected override IList<PowerThreadView> BuildViews(PowerThreadContext context)

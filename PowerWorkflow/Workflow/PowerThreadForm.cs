@@ -3,6 +3,7 @@ using System;
 using RazorEngine;
 using PowerWorkflow.Common;
 using System.IO;
+using System.Dynamic;
 
 namespace PowerWorkflow.Workflow
 {
@@ -67,7 +68,19 @@ namespace PowerWorkflow.Workflow
         public string RenderHtml()
         {
             var cshtml = File.ReadAllText(this.FormPath);
-            var result = RazorHelper.Parse(cshtml, BindingViewModel.Data, this.FormPath);
+            ExpandoObject model;
+
+            if (BindingViewModel!=null && BindingViewModel.Data!=null)
+            {
+
+                model = BindingViewModel.Data;
+            }
+            else
+            {
+                model = new ExpandoObject { };
+            }
+
+            var result = RazorHelper.Parse(cshtml, model, this.FormPath);
             return result;
         }
     }
